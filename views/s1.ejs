@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <% cd1.forEach(function(item){ %>
+        <tr>
+  
+          <th scope="row"><option  name="patientname"><%=item.name%></option></th>
+          <td><option  name="patientname"><%=item.blood%></option></td>
+          <td><option  name="patientname"><%=item.quan%></option></td>
+
+       
+  
+  
+        </tr>
+          <% }) %>
+</body>
+</html>
