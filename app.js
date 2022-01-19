@@ -18,6 +18,9 @@ const rSchema={
 	blood:String,
 	quan:String,
 }
+const QrSchema={
+	detail:String,
+}
 const patientSchema={
 	Name:String,
 	email:String,
@@ -63,6 +66,7 @@ const O2=mongoose.model('O2',oxygenSchema);
 const Patient=mongoose.model('Patient',patientSchema);
 const image=mongoose.model('image',imageSchema);
 const Bed=mongoose.model('Bed',bedSchema);
+const Qr=mongoose.model('Qr',QrSchema);
 const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 465,
@@ -101,7 +105,49 @@ var post=new Rp({
 	post.save();
 	res.redirect("/blood_page")
 })
+app.get('/heath_card',(req,res)=>{
+	res.render("health_card",{src:""});
+})
+var ud="";
+app.post("/Qr_gen",(req,res)=>{
+	 ud=req.body.Qr_detail;
+	var obj=new Qr({
+		detail:req.body.Qr_detail,
+	})
+	obj.save();
 
+	console.log(ud);
+})
+	// var id="";
+	app.post('/gen',(req,res)=>{
+
+
+Qr.find({detail:ud},(er,data)=>{
+if(er) console.log(er);
+else{
+	var id=data[0]._id;
+	console.log(id);
+	Qr.findById(id,(err,post)=>{
+		console.log(post);
+		if(err) console.log(err);
+		else{
+			qr.toDataURL(post.detail ,(er,src)=>{
+				if(er) console.log(er);
+				else res.render("health_card",{src:src});
+			})
+		}
+	})
+}
+})
+})
+
+
+// console.log(id);
+
+
+// var temp="";
+
+// })
 app.post("/confirm_appointment", async (req,res) => {
     // const doc_id = req.body.doc_id;
     const email = req.body.email;
@@ -175,18 +221,7 @@ app.get('/oxygen_cylinder',(req,res)=>{
 		}
 })
 })
-app.get("/detail/:id",(req,res)=>{
-	const id=req.params.id;
-image.findById(id,(err,post)=>{
-		if(err) console.log(err);
-		else{
-			qr.toDataURL(post.img.dat ,(er,src)=>{
-				if(er) console.log(er);
-				else res.render("qr",{src:src});
-			})
-		}
-	})
-})
+
 app.get('/blood',(req,res)=>{
 	Rp.find({},(err,data)=>{
 		if(err){

@@ -1,238 +1,77 @@
-.flex-container {
-    display: flex;
-    flex-direction: row;
-    font-size: 30px;
-    text-align: center;
-    margin: 26px;
-    padding: 12px;
-    /* border: 2px solid black; */
-  }
-  
-  .flex-item-left {
-    background: transparent;
-    padding: 18px;
-    flex: 50%;
-    margin: 3px;
-    /* border: 2px solid black; */
-  }
-  
-  .flex-item-right {
-    background: transparent;
-    padding: 18px;
-    margin: 3px;
-    /* border: 2px solid black; */
-    flex: 50%;
-  }
-  
-  @media (max-width: 800px) {
-    .flex-container {
-      flex-direction: column;
-    }
-  
-  }
+body{
+  margin: 0;
+  padding:0;
+}
+img{
 
-  .btn {
-    display: inline-block;
-    border: none;
-    background: var(--primary-color);
-    color: #fff;
-    padding: 0.75rem 1.5rem;
-    margin-top: 1rem;
-    transition: opacity 1s ease-in-out;
-    text-decoration: none;
-  }
-  
-  .btn:hover {
-    opacity: 0.7;
-  }
-  
-  /* MENU STYLES */
-  .menu-wrap {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1;
-  }
-  
-  .menu-wrap .toggler {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
-    cursor: pointer;
-    width: 50px;
-    height: 50px;
-    opacity: 0;
-  }
-  @media (min-width: 991px) {
-    .menu-wrap .hamburger {
-      width: 76px;
-      height: 76px;
-    }
-   }
-   @media (max-width: 991px) {
-     .menu-wrap .hamburger {
-       width: 77px;
-       height: 77px;
-     }
-    }
-   /* @media only screen and (max-width: 991px) {
-     .menu-wrap .hamburger {
-       height: 79px;
-       width:79px;
-     }
-   } */
-  .menu-wrap .hamburger {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    padding: 1rem;
-    background: var(--primary-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  /* Hamburger Line */
-  .menu-wrap .hamburger > div {
-    position: relative;
-    flex: none;
-    width: 100%;
-    height: 2px;
-    background: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.4s ease;
-  }
-  
-  /* Hamburger Lines - Top & Bottom */
-  .menu-wrap .hamburger > div::before,
-  .menu-wrap .hamburger > div::after {
-    content: '';
-    position: absolute;
-    z-index: 1;
-    top: -10px;
-    width: 100%;
-    height: 2px;
-    background: inherit;
-  }
-  
-  /* Moves Line Down */
-  .menu-wrap .hamburger > div::after {
-    top: 10px;
-  }
-  
-  /* Toggler Animation */
-  .menu-wrap .toggler:checked + .hamburger > div {
-    transform: rotate(135deg);
-  }
-  
-  /* Turns Lines Into X */
-  .menu-wrap .toggler:checked + .hamburger > div:before,
-  .menu-wrap .toggler:checked + .hamburger > div:after {
-    top: 0;
-    transform: rotate(90deg);
-  }
-  
-  /* Rotate On Hover When Checked */
-  .menu-wrap .toggler:checked:hover + .hamburger > div {
-    transform: rotate(225deg);
-  }
-  
-  /* Show Menu */
-  .menu-wrap .toggler:checked ~ .menu {
-    visibility: visible;
-  }
-  
-  .menu-wrap .toggler:checked ~ .menu > div {
-    transform: scale(1);
-    transition-duration: var(--menu-speed);
-  }
-  
-  .menu-wrap .toggler:checked ~ .menu > div > div {
-    opacity: 1;
-    transition:  opacity 0.4s ease 0.4s;
-  }
-  
-  .menu-wrap .menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    visibility: hidden;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .menu-wrap .menu > div {
-    background: var(--overlay-color);
-    border-radius: 50%;
-    width: 200vw;
-    height: 200vw;
-    display: flex;
-    flex: none;
-    align-items: center;
-    justify-content: center;
-    transform: scale(0);
-    transition: all 0.4s ease;
-  }
-  
-  .menu-wrap .menu > div > div {
-    text-align: center;
-    max-width: 90vw;
-    max-height: 100vh;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-  }
-  
-  .menu-wrap .menu > div > div > ul > li {
-    list-style: none;
-    color: #fff;
-    font-size: 1.5rem;
-    padding: 1rem;
-  }
-  
-  .menu-wrap .menu > div > div > ul > li > a {
-    color: inherit;
-    text-decoration: none;
-    transition: color 0.4s ease;
-  }
-  .showcase {
-    background: var(--primary-color);
-    color: #fff;
-    height: 100vh;
-    position: relative;
-  }
-  
-  .showcase:before {
-    content: '';
-    background: url('https://images.pexels.com/photos/533923/pexels-photo-533923.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260') no-repeat center center/cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-  }
-  
-  .showcase .showcase-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    height: 100%;
-  }
-  
-  .showcase h1 {
-    font-size: 4rem;
-  }
-  
-  .showcase p {
-    font-size: 1.3rem;
-  }
+  max-width: 100%;
+  height: auto;
+}
+.col-sm-6{
+  margin-top: 10vh;
+
+}
+section{
+  padding-bottom: 5%;
+
+}
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 55%;
+}
+.text2{
+  padding-left: 10% !important;
+  padding-bottom: 7% !important;
+  /* padding-top: 7% !important; */
+}
+.text1{
+  padding-right: 10% !important;
+  padding-bottom: 7% !important;
+  /* padding-top: 5% !important; */
+
+}
+.text3{
+  padding-right: 10% !important;
+  padding-bottom: 7% !important;
+  /* padding-top: 2% !important; */
+
+}
+div.polaroid1 {
+  margin-left: 5%;
+  width: 90%;
+  border-radius: 30px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+
+}
+div.polaroid2 {
+  margin-left: 5%;
+  width: 90%;
+  margin-top: 7%;
+  border-radius: 30px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+
+}
+div.polaroid3 {
+  margin-left: 5%;
+  width: 90%;
+  border-radius: 30px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+
+}
+.heading{
+  margin-bottom: 5%;
+  font-size: 15px;
+}
+div.container {
+  padding: 10px;
+}
+body {
+    font-family: 'Playfair Display';
+    font-size: 22px;
+    font-weight: 600;
+}

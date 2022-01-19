@@ -4,18 +4,55 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/navbar.css">
     <title>Document</title>
 </head>
 <body>
+  <div class="container-fluid" style=" position: fixed;z-index:1;color:black">
+
+    <div class="menu-wrap">
+        <input type="checkbox" class="toggler">
+        <div class="hamburger"><div></div></div>
+        <div class="menu">
+          <div>
+            <div>
+              <ul>
+                <li><a href="/">Home</a></li>
+                  <li><a href="/index">Health Card</a></li>
+                  <li><a href="/">Ambulance Sevice</a></li>
+                  <li><a href="/blood">Blood bottles</a></li>
+                  <!-- <li><a href="/index">Oxygen Cylinder</a></li> -->
+                  <li><a href="/oxygen">Oxygen Cylinder</a></li>
+
+                  <li><a href="/bed">Beds</a></li>
+                  <li><a href="/patient_register">Book Appointment</a></li>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
+
     <form action="/patient_detail" method="post">
         <label for=""> Name</label>
+        <br>
         <input type="text" name="First_name">
+        <br>
         <label for="">Email</label>
+        <br>
         <input type="text" name="email">
+        <br>
         <label for="">Phone</label>
+        <br>
         <input type="text" name="phone">
+        <br>
         <button type="submit">Submit</button>
     </form>
-    
+
 </body>
 </html>

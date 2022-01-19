@@ -4,6 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/navbar.css">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -19,7 +20,7 @@
       }
       .container{
         /* opacity: 0.9; */
-        margin-top: -100vh;
+        margin-top: -80vh;
       }
       button{
         background-color: rgb(21,75,196);
@@ -28,6 +29,24 @@
     <title>Hello, world!</title>
   </head>
   <body>
+    <div class="container-fluid" style=" position: fixed;z-index:1;color:black">
+
+      <div class="menu-wrap">
+          <input type="checkbox" class="toggler">
+          <div class="hamburger"><div></div></div>
+          <div class="menu">
+            <div>
+              <div>
+                <ul>
+                  <li><a href="/index">Music Player</a></li>
+                  <li><a href="/users/logout">Log out</a></li>
+
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
     <!-- <h1>Hello, world!</h1> -->
     <img src="image/hosp.png" alt="" srcset="">
     <div class="container">
@@ -41,16 +60,16 @@
    <br>
    <a href="/Bed">
     <button type="button" class="btn btn-outline-primary" style="background-color: rgb(21,75,196); color: white;">Beds</button></a>
- 
-  
+
+
   <br>
   <br>
 
-  <a href="/slotbook">
+  <a href="/patient_book">
     <button type="button" class="btn btn-outline-primary" style="background-color: rgb(21,75,196); color: white;">Patient's Appointment</button></a>
   </div>
 
-    
+
 
 
 
