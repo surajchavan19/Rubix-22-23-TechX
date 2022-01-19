@@ -10,6 +10,12 @@
     <title>Document</title>
 </head>
 <body>
+  <h1 style="text-align: center; margin-top: 2vh;">Blood Slot Updation</h1>
+        <!-- Button trigger modal -->
+        <br>
+<button type="button" class="btn btn-primary" style="margin-left: 100vh;" data-toggle="modal" data-target="#exampleModalCenter" style="margin-left: 5vw;">
+ Add
+ </button>
    
     <div class="container" style="margin-top: 5vh;">
         <table class="table">
@@ -17,6 +23,10 @@
             <tr>
               <th scope="col">Blood Group</th>
               <th scope="col">Quantity</th>
+              <th scope="col"></th>
+              <th scope="col">Update</th>
+
+
       
         
             </tr>
@@ -33,10 +43,17 @@
            
               <form action="/up" method="post">
                   <td> <input type="hidden" value="<%=item._id%>" name="ui"></td>
-                  <td><input name="quantity" value="<%=item.quan%>"</td>   
-              <td>  <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"  >
+                  <td><input name="quantity" value="<%=item.quan%>" style="margin-left:-50vh ;"></td>   
+                  <div class="but" style="margin-left:-10vh">
+                  <td>
+           
+                <button type="submit" class="btn btn-primary" data-toggle="modal"  data-target="#exampleModalCenter"  >
                 Update
-                    </button></td>
+                    </button>
+                  
+                   
+                  </td>
+                </div>
                   </form>
           
       
@@ -46,7 +63,7 @@
       
         </table>
         </div>
-        <form action="/det" method="post">
+        <!-- <form action="/det" method="post">
           <label for="">Hname</label>
           <br>
             <input type="text" name="hospital">
@@ -65,10 +82,53 @@
     <br>
     <!-- <input type="text" name="" id="">
      -->
-     <button type="submit">submit</button>
+     <!-- <button type="submit">submit</button>
     
-        </form>
-      
+        </form> --> -->
+
+
+ <!-- Modal -->
+ <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered" role="document">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title" id="exampleModalLongTitle">Add Blood :</h5>
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+         </button>
+       </div>
+       <div class="modal-body">
+           <form action="/det" method="POST">
+               <div class="mb-3">
+                 <label for="recipient-name" class="col-form-label">Hospital name</label>
+                 <input type="text" class="form-control" id="recipient-name" name="hospital">
+               </div>
+
+               <div class="mb-3">
+                 <label for="recipient-name" class="col-form-label">Pincode</label>
+                 <input type="text" class="form-control" id="recipient-name" name="pincode">
+               </div>
+               <div class="mb-3">
+                   <label for="recipient-name" class="col-form-label">Blood Group</label>
+                   <input type="text" class="form-control" id="recipient-name" name="blood">
+                 </div>
+                 <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">Units</label>
+                  <input type="text" class="form-control" id="recipient-name" name="quan">
+                </div>
+               <div class="modal-footer">
+                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                 <button class="btn btn-primary" type="submit">Add</button>
+               </div>
+             </form>
+       </div>
+
+     </div>
+   </div>
+ </div>
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
       
 
 </body>
