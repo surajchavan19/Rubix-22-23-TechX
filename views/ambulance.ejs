@@ -11,9 +11,14 @@
 </head>
 <body>
   <div class="container-fluid" style=" position: fixed;z-index:1;color:black">
-    <button type="button" class="btn btn-primary" style="margin-left: 80vh;margin-top: -10vh" data-toggle="modal" data-target="#exampleModalCenter" style="margin-left: 5vw;">
+    <button type="button" class="btn btn-primary" style="margin-left: 70vh;margin-top: -10vh" data-toggle="modal" data-target="#exampleModalCenter" style="margin-left: 5vw;">
       Search
       </button>
+    <a href="/maps">
+    <button type="button" class="btn btn-primary" style="margin-left: 90vh;margin-top: -16vh" data-toggle="modal" data-target="#exampleModalCenter" style="margin-left: 5vw;">
+        Search neaby hospital
+        </button>
+      </a>
     <div class="menu-wrap">
         <input type="checkbox" class="toggler">
         <div class="hamburger"><div></div></div>
@@ -51,11 +56,11 @@
           <thead class="table-dark">
             <tr>
 
-              <th scope="col">Hospital</th>
+              <th scope="col">Ambulance service Name</th>
               <th scope="col">Pincode</th>
 
-              <th scope="col">Blood Group</th>
-              <th scope="col">Quantity</th>
+              <th scope="col">Area</th>
+              <th scope="col">Phone No</th>
 
 
             </tr>
@@ -66,11 +71,11 @@
 
 
 
-              <th scope="row"><option  name="patientname"><%=item.hospital%></option></th>
+              <th scope="row"><option  name="patientname"><%=item.name%></option></th>
               <td><option  name="patientname"><%=item.pincode%></option></td>
-              <td><option  name="patientname"><%=item.blood%></option></td>
+              <td><option  name="patientname"><%=item.area%></option></td>
 
-              <td><option  name="patientname"><%=item.quan%></option></td>
+              <td><option  name="patientname"><%=item.phone%></option></td>
 
               <!-- <button></button> -->
 
@@ -89,22 +94,19 @@
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Search Blood Bottle:</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Search :</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
-                  <form action="/se" method="POST">
+                  <form action="/sea" method="POST">
                       <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Enter pin</label>
                         <input type="text" class="form-control" id="recipient-name" name="pin">
                       </div>
 
-                      <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label"> Blood group</label>
-                        <input type="text" class="form-control" id="recipient-name" name="bloodgroup">
-                      </div>
+
 
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

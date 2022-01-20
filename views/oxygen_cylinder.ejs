@@ -20,8 +20,11 @@
           <div>
             <div>
               <ul>
-                <li><a href="/index">Music Player</a></li>
-                <li><a href="/users/logout">Log out</a></li>
+                <li><a href="/hospital_login">Admin Page</a></li>
+                <li><a href="/blood_page">Blood Update</a></li>
+                <li><a href="/oxygen_cylinder">Oxygen Update</a></li>
+                <li><a href="/Beds">Bed Update</a></li>
+                <li><a href="/patient_book">Patient's Appointment</a></li>
 
               </ul>
             </div>
@@ -97,6 +100,10 @@
        </div>
        <div class="modal-body">
            <form action="/add" method="POST">
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Hospital/label>
+              <input type="text" class="form-control" id="recipient-name" name="hname">
+            </div>
                <div class="mb-3">
                  <label for="recipient-name" class="col-form-label">Units</label>
                  <input type="text" class="form-control" id="recipient-name" name="oq">

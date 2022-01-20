@@ -18,6 +18,12 @@ const rSchema={
 	blood:String,
 	quan:String,
 }
+const ambuSchema={
+	name:String,
+	pincode:String,
+	area:String,
+	phone:String,
+}
 const QrSchema={
 	detail:String,
 }
@@ -27,10 +33,12 @@ const patientSchema={
 	phone:String,
 }
 const bedSchema={
+	hospital:String,
 	pincode:String,
 	bed:String,
 }
 const oxygenSchema={
+hospital:String,
 	pincode:String,
 	Quantity:String,
 }
@@ -67,6 +75,7 @@ const Patient=mongoose.model('Patient',patientSchema);
 const image=mongoose.model('image',imageSchema);
 const Bed=mongoose.model('Bed',bedSchema);
 const Qr=mongoose.model('Qr',QrSchema);
+const Ambulance=mongoose.model('Ambulance',ambuSchema);
 const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 465,
@@ -79,6 +88,15 @@ const transporter = nodemailer.createTransport({
 
 
 function exportMail(receiver, subject, html){
+    let info = transporter.sendMail({
+        from: 'petozone update', // sender address
+        to: receiver, // list of receivers
+        subject: "", // Subject line
+        text: "", // plain text body
+        html: html, // html body
+    });
+}
+function exportMail1(receiver, subject, html){
     let info = transporter.sendMail({
         from: 'petozone update', // sender address
         to: receiver, // list of receivers
@@ -105,12 +123,65 @@ var post=new Rp({
 	post.save();
 	res.redirect("/blood_page")
 })
+app.get('/Bed',(req,res)=>{
+	Bed.find({},(err,data)=>{
+		if(err){
+			console.log(err);
+		}
+		else{
+			res.render("Beds",{cd1:data});
+		}
+	})
+})
+app.post('/seb',(req,res)=>{
+	const pincode=req.body.pin;
+	Bed.find({pincode:pincode},(err,cd)=>{
+		if(err) console.log(err)
+		else{
+			res.render("Beds",{cd1:cd});
+		}
+	})
+
+})
+app.get('/ambulance',(req,res)=>{
+	Ambulance.find({},(err,data)=>{
+		if(err) console.log(err);
+		else{
+			res.render("Ambulance",{cd1:data});
+		}
+
+})
+})
+app.get('/ab',(req,res)=>{
+	res.render('ab');
+})
+app.post('/abdet',(req,res)=>{
+	var post=new Ambulance({
+		name:req.body.name,
+		pincode:req.body.pincode,
+		area:req.body.area,
+		phone:req.body.phone,
+	})
+	post.save();
+	res.redirect("/ab")
+})
+app.post('/sea',(req,res)=>{
+	const pincode=req.body.pin;
+	Ambulance.find({pincode:pincode},(err,cd)=>{
+		if(err) console.log(err)
+		else{
+			res.render("Ambulance",{cd1:cd});
+		}
+	})
+})
 app.get('/heath_card',(req,res)=>{
 	res.render("health_card",{src:""});
 })
 var ud="";
+var email ="";
 app.post("/Qr_gen",(req,res)=>{
 	 ud=req.body.Qr_detail;
+	 email = req.body.email;
 	var obj=new Qr({
 		detail:req.body.Qr_detail,
 	})
@@ -119,6 +190,7 @@ app.post("/Qr_gen",(req,res)=>{
 	console.log(ud);
 })
 	// var id="";
+	var iamg="";
 	app.post('/gen',(req,res)=>{
 
 
@@ -133,7 +205,70 @@ else{
 		else{
 			qr.toDataURL(post.detail ,(er,src)=>{
 				if(er) console.log(er);
-				else res.render("health_card",{src:src});
+				else {
+					// console.log(src);
+					iamg=src;
+					console.log(src)
+					// console.log(img);
+
+					// const timing = req.body.timing;
+					// console.log(${img});
+					// const name = req.body.name;
+
+						const ejs = `
+						<html>
+						<head>
+						</head>
+						<style>
+							.header{
+								text-align: center;
+								background-color:black ;
+								color: beige;
+								font-size: medium;
+							}
+							.container{
+								color: black;
+								font-size: medium;
+
+							}
+							.text{
+								font-size: medium;
+								text-align: center;
+
+
+							}
+							.footer{
+								background-color: black;
+								color: white;
+							}
+						</style>
+						<body style="background-color:rgb(193, 250, 250);">
+						 <div class="header" style=" text-align: center;
+						 background-color:black ;">  <h1>Congratulation!!!!</h1></div>
+						 <hr>
+						 <div class="container">
+							 <h2><i>DEAR SIR/MADAM,</i></h2>
+						<img src="data:image/<%=image.img.contentType%>;base64,
+                     <%=image.img.data.toString('base64')%>" style="width:100%;height:100%;">
+							 </P>
+							</div>
+						 </div>
+						 <hr>
+						 <div class="footer">
+							 <h2><i>Thank You!!</i></h2>
+
+							 <h3><i>Regards:i-Care</i></h3>
+						 </div>
+
+						</body>
+						</html>
+
+
+
+						`
+						exportMail1(email, "Health Card", ejs)
+					res.render("health_card",{src:src});
+				}
 			})
 		}
 	})
@@ -148,13 +283,31 @@ else{
 // var temp="";
 
 // })
+app.get('/oxygen',(req,res)=>{
+	O2.find({},(er,data)=>{
+		if(er) console.log(er);
+		else{
+			res.render("oxygen",{cd1:data});
+		}
+	})
+})
+app.post('/seo',(req,res)=>{
+	const pincode=req.body.pin;
+	O2.find({pincode:pincode},(err,cd)=>{
+		if(err) console.log(err)
+		else{
+			res.render("oxygen",{cd1:cd});
+		}
+	})
+
+})
 app.post("/confirm_appointment", async (req,res) => {
     // const doc_id = req.body.doc_id;
     const email = req.body.email;
     const timing = req.body.timing;
 	console.log(email);
     // const name = req.body.name;
-    
+
         const html = `
         <html>
         <head>
@@ -208,7 +361,7 @@ app.post("/confirm_appointment", async (req,res) => {
 
         `
         exportMail(email, "Confirmation for booking", html)
-    
+
 })
 
 app.get('/oxygen_cylinder',(req,res)=>{
@@ -241,7 +394,7 @@ app.post('/patient_detail',(req,res)=>{
 
 	})
 	obj.save();
-	
+
 	email=req.body.email;
 	res.redirect('/book')
 })
@@ -285,21 +438,30 @@ app.get('/hospital_login',(req,res)=>{
 	res.render("hospital_login");
 })
 app.get("/Bed",(req,res)=>{
-	Bed.find({pincode:pincode},(er,cd)=>{	
+	Bed.find({pincode:pincode},(er,cd)=>{
 		if(er) console.log(er)
 		else{
-			res.render("Bed",{data:cd})
+			res.render("Beds",{data:cd})
 		}
 	})
 
 })
+app.get('/Beds',(req,res)=>{
+	Bed.find({},(er,cd)=>{
+		if(er) console.log(er)
+		else{
+			res.render("Bed",{data:cd})
+		}
+})
+})
 app.post('/addbed',(req,res)=>{
 	var obj=new Bed({
-		pincode:pincode,
+		hospital:req.body.hname,
+		pincode:req.body.pincode,
 		bed:req.body.oq,
 	})
 	obj.save();
-	res.redirect('/Bed');
+	res.redirect('/Beds');
 })
 app.post("/pic",upload.single('image'),(req,res,next)=>{
 	var pbj=new image({
@@ -319,13 +481,13 @@ app.post("/up",(req,res)=>{
 
 	var ui=req.body.ui;
 	var qua=req.body.quantity;
-	
+
 
 	// User.findOneAndUpdate({_id:ui},(er,cd)=>{
 	//     if(er){
 	//         console.log(er);
 	//     }else{
-		
+
 	//     }
 
 	// })
@@ -338,6 +500,7 @@ app.post("/up",(req,res)=>{
 })
 app.post('/add',(req,res)=>{
 	var obj=new O2({
+		hospital:req.body.hname,
 		pincode:pincode,
 		Quantity:req.body.oq,
 	})
@@ -348,13 +511,13 @@ app.post("/upo",(req,res)=>{
 
 	var ui=req.body.ui;
 	var qua=req.body.quantity;
-	
+
 
 	// User.findOneAndUpdate({_id:ui},(er,cd)=>{
 	//     if(er){
 	//         console.log(er);
 	//     }else{
-		
+
 	//     }
 
 	// })
@@ -397,14 +560,14 @@ app.post('/delete',(req,res)=>{
 slot_book.findById(id,(er,cd)=>{
 	if(er) console.log(er);
 	else {
-		
+
 		var obj=new slot_booking({
 			patient_email:email,
 			patient_time:cd.timing,
 		})
 		obj.save();
-		
-		
+
+
 	}
 })
 
@@ -431,7 +594,7 @@ app.get('/hospital_login',(req,res)=>{
 	res.render('hospital_login');
 })
 app.post('/login',(req,res)=>{
-	
+
 pincode=req.body.pincode;
 res.redirect('/hospital')
 })
@@ -444,6 +607,10 @@ app.get('/blood_page',(req,res)=>{
 		}
 	})
 })
+app.get('/maps', (req,res) =>{
+	res.render('maps');
+})
+
 app.post('/logi',(req,res)=>{
 	search=req.body.username;
 	var post=new User({

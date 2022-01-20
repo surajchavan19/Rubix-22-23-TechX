@@ -20,15 +20,11 @@
           <div>
             <div>
               <ul>
-                <!-- <li><a href="/">Home</a></li>
-                <li><a href="/index">Health Card</a></li>
-                <li><a href="/">Ambulance Sevice</a></li>
-                <li><a href="/blood">Blood bottles</a></li>
-                <!-- <li><a href="/index">Oxygen Cylinder</a></li> -->
-                <!-- <li><a href="/oxygen">Oxygen Cylinder</a></li>
-
-                <li><a href="/bed">Beds</a></li>
-                <li><a href="/patient_register">Book Appointment</a></li>  -->
+                <li><a href="/hospital_login">Admin Page</a></li>
+                <li><a href="/blood_page">Blood Update</a></li>
+                <li><a href="/oxygen_cylinder">Oxygen Update</a></li>
+                <li><a href="/Beds">Bed Update</a></li>
+                <li><a href="/patient_book">Patient's Appointment</a></li>
 
               </ul>
             </div>
@@ -100,13 +96,22 @@
    <div class="modal-dialog modal-dialog-centered" role="document">
      <div class="modal-content">
        <div class="modal-header">
-         <h5 class="modal-title" id="exampleModalLongTitle">Add Bed:</h5>
+         <h5 class="modal-title" id="exampleModalLongTitle">Add Oxygen:</h5>
          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
            <span aria-hidden="true">&times;</span>
          </button>
        </div>
        <div class="modal-body">
            <form action="/addbed" method="POST">
+              <div class="mb-3">
+                 <label for="recipient-name" class="col-form-label">Hospital Name</label>
+                 <input type="text" class="form-control" id="recipient-name" name="hname">
+               </div>
+               <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Pincode</label>
+                <input type="text" class="form-control" id="recipient-name" name="pincode">
+              </div>
+
                <div class="mb-3">
                  <label for="recipient-name" class="col-form-label">Units</label>
                  <input type="text" class="form-control" id="recipient-name" name="oq">
